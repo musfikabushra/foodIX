@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import LenisProvider from "@/components/LenisProvider";
 import { isAuthenticated } from "@/lib/auth";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "FastFood - Delicious Meals Delivered",
@@ -19,11 +21,14 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen">
-        <Navbar isLoggedIn={loggedIn} />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
+        <LenisProvider>
+          <Navbar isLoggedIn={loggedIn} />
+          <main className="flex-grow">
+            {children}
+            <ScrollToTop />
+          </main>
+          <Footer />
+        </LenisProvider>
       </body>
     </html>
   );

@@ -12,7 +12,7 @@ export default async function AddItemPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-8">Add New Item</h1>
+        <h1 className="text-5xl font-bold text-center mb-8">Add New <span className='text-yellow-500'>Item</span></h1>
         <div className="bg-white rounded-lg shadow-lg p-8">
           <AddItemForm />
         </div>

@@ -74,7 +74,6 @@ const [activeDish, setActiveDish] = useState(signatureDishes[0]);
           <div className="text-black">
             <h2 className="text-6xl font-black uppercase italic leading-none mb-6">Our Secret <br /> Ingredient? <span className="text-red-600">Soul.</span></h2>
             <p className="text-lg font-bold mb-6">We don't follow recipes; we follow instincts. Every burger, every fry, and every sauce is a result of 1,000 trials.</p>
-            <button className="bg-black text-white px-8 py-4 rounded-full font-black uppercase italic hover:bg-red-600 transition-colors">Read Full Bio</button>
           </div>
         </div>
       </section>
@@ -212,7 +211,7 @@ const [activeDish, setActiveDish] = useState(signatureDishes[0]);
                     <span className={`text-2xl font-black italic ${activeDish.id === dish.id ? 'text-red-600' : 'text-gray-600'}`}>
                       {dish.id}
                     </span>
-                    <h3 className={`text-4xl font-black uppercase italic tracking-tighter transition-all ${activeDish.id === dish.id ? 'translate-x-4 text-white' : 'text-gray-500'}`}>
+                    <h3 className={`text-4xl font-black uppercase italic tracking-tighter transition-all ${activeDish.id === dish.id ? 'translate-x-4 text-red' : 'text-gray-500'}`}>
                       {dish.name}
                     </h3>
                   </motion.div>
@@ -240,7 +239,7 @@ const [activeDish, setActiveDish] = useState(signatureDishes[0]);
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                   <div className="absolute bottom-10 left-10">
                     <p className="bg-yellow-400 text-black px-4 py-1 rounded-full font-black text-xs uppercase mb-2 inline-block">Signature Item</p>
-                    <h4 className="text-3xl font-black uppercase italic">{activeDish.name}</h4>
+                    <h4 className="text-3xl text-white font bold uppercase italic">{activeDish.name}</h4>
                   </div>
                 </motion.div>
               </AnimatePresence>

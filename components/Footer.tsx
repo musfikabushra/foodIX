@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
   Facebook, 
-  Twitter, 
   Instagram, 
   Youtube, 
   MapPin, 
@@ -13,6 +12,18 @@ import {
   Clock, 
   ArrowRight 
 } from 'lucide-react';
+
+// Custom X (formerly Twitter) Icon Component
+const XIcon = ({ size }: { size: number }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+  >
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+  </svg>
+);
 
 export default function Footer() {
   return (
@@ -24,10 +35,13 @@ export default function Footer() {
           
           {/* Brand Identity */}
           <div className="lg:col-span-4 space-y-6">
-            <Link href="/" className="flex items-center gap-2 group">
-              {/* Keeping your original logo style exactly as requested */}
-              <img src="/fire.png" className="w-10 h-10 object-contain transition-transform group-hover:rotate-12" alt="Logo" />
-              <h3 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent tracking-tighter uppercase">
+            <Link href="/" className="flex items-center gap-2 group w-fit">
+              <img 
+                src="/fire.png" 
+                className="w-12 h-12 object-contain transition-transform group-hover:rotate-12" 
+                alt="Logo" 
+              />
+              <h3 className="text-5xl font-bold bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent tracking-tighter uppercase">
                 FoodIX
               </h3>
             </Link>
@@ -35,38 +49,46 @@ export default function Footer() {
               Delicious fast food delivered fresh to your door in minutes! We don&apos;t just serve food; we deliver happiness.
             </p>
             
-            {/* Social Links with Hover Animation */}
+            {/* Social Links */}
             <div className="flex gap-4">
               {[
-                { Icon: Facebook, color: 'hover:bg-blue-600', link: '#' },
-                { Icon: Instagram, color: 'hover:bg-pink-600', link: '#' },
-                { Icon: Twitter, color: 'hover:bg-sky-500', link: '#' },
-                { Icon: Youtube, color: 'hover:bg-red-600', link: '#' },
+                { Icon: Facebook, color: 'hover:bg-blue-600', link: 'https://facebook.com' },
+                { Icon: Instagram, color: 'hover:bg-pink-600', link: 'https://instagram.com' },
+                { Icon: XIcon, color: 'hover:bg-gray-800', link: 'https://x.com' },
+                { Icon: Youtube, color: 'hover:bg-red-600', link: 'https://youtube.com' },
               ].map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.link}
+                  target="_blank" // নতুন ট্যাবে ওপেন হওয়ার জন্য
+                  rel="noopener noreferrer"
                   whileHover={{ y: -5 }}
                   className={`w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 transition-colors ${social.color}`}
                 >
+                  {/* @ts-ignore */}
                   <social.Icon size={18} />
                 </motion.a>
               ))}
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links Updated */}
           <div className="lg:col-span-2">
             <h4 className="text-xl font-bold mb-6 text-yellow-500 uppercase tracking-widest">Menu</h4>
             <ul className="space-y-4">
-              {['Home', 'Items', 'About Us', 'Contact'].map((item) => (
-                <li key={item}>
+              {[
+                { name: 'Home', path: '/' },
+                { name: 'Items', path: '/items' },
+                { name: 'About Us', path: '/about' },
+                { name: 'Contact', path: '/contact' }
+              ].map((item) => (
+                <li key={item.name}>
                   <Link 
-                    href={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '')}`} 
-                    className="text-gray-400 hover:text-white flex items-center gap-2 group transition-all"
+                    href={item.path} 
+                    className="text-gray-400 hover:text-white flex items-center gap-2 group transition-all w-fit"
                   >
                     <ArrowRight size={14} className="text-yellow-500 opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0" />
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -122,7 +144,6 @@ export default function Footer() {
             <span className="ml-2 italic text-gray-600"> Fresh & Fast 🔥</span>
           </p>
           
-          {/* Payment Method Placeholders */}
           <div className="flex items-center gap-4 opacity-40 grayscale hover:grayscale-0 transition-all cursor-default">
              <div className="px-2 py-1 bg-white rounded text-[10px] font-black text-black uppercase">Visa</div>
              <div className="px-2 py-1 bg-white rounded text-[10px] font-black text-black uppercase">MasterCard</div>

@@ -30,10 +30,10 @@ export default function Navbar({ isLoggedIn }: { isLoggedIn: boolean }) {
           >
             <img
               src="/fire.png"
-              className="w-10 h-10 object-contain transition-transform group-hover:rotate-12"
+              className="w-9 h-9 object-contain transition-transform group-hover:rotate-12"
               alt="Logo"
             />
-            <h1 className="bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent">
+            <h1 className="bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-3xl text-transparent ">
               FoodIX
             </h1>
           </Link>
