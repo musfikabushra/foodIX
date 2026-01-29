@@ -37,7 +37,7 @@ const chefs = [
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
-    days: 1435,
+    days: 3,
     hours: 11,
     minutes: 38,
     seconds: 20,
@@ -90,14 +90,14 @@ export default function Home() {
           transition={{ duration: 6, repeat: Infinity }}
           className="absolute top-[20%] left-[10%] text-7xl opacity-40 blur-[1px]"
         >
-          🍕
+          
         </motion.div>
         <motion.div 
           animate={{ y: [0, 40, 0], rotate: [0, -15, 0] }}
           transition={{ duration: 8, repeat: Infinity }}
           className="absolute bottom-[20%] right-[10%] text-8xl opacity-30 blur-[2px]"
         >
-          🍔
+          
         </motion.div>
       </div>
 
