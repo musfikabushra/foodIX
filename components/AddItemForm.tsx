@@ -14,7 +14,7 @@ import {
   AlertCircle,
   Loader2
 } from 'lucide-react';
-import { API_URL } from '@/lib/api';
+import { apiClient } from '@/lib/api';
 
 export default function AddItemForm() {
   const [formData, setFormData] = useState({
@@ -46,16 +46,12 @@ export default function AddItemForm() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${API_URL}/api/items`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          price: parseFloat(formData.price)
-        })
+      const result = await apiClient.post('/api/items', {
+        ...formData,
+        price: parseFloat(formData.price)
       });
 
-      if (res.ok) {
+      if (result) {
         showToast('Item added successfully!', 'success');
         setFormData({ name: '', description: '', price: '', image: '', category: '' });
         setTimeout(() => router.push('/items'), 1500);

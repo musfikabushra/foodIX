@@ -1,7 +1,12 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-
+// Use relative URLs so it works on both localhost and Vercel
 const getApiUrl = (endpoint: string): string => {
-  return `${API_URL}${endpoint}`;
+  // Server-side: need absolute URL
+  if (typeof window === 'undefined') {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    return `${baseUrl}${endpoint}`;
+  }
+  // Client-side: use relative URL
+  return endpoint;
 };
 
 export const apiClient = {
@@ -48,5 +53,3 @@ export const apiClient = {
     }
   },
 };
-
-export { API_URL };
